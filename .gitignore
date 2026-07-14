@@ -1,0 +1,10 @@
+# AWS credentials - never commit these
+.aws/
+*.pem
+credentials
+
+# macOS
+.DS_Store
+
+# Docker
+*.log

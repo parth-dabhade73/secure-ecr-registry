@@ -1,0 +1,35 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowDevUserAccess",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::350967406945:user/ecr-dev-user"
+      },
+      "Action": [
+        "ecr:GetDownloadUrlForLayer",
+        "ecr:BatchGetImage",
+        "ecr:BatchCheckLayerAvailability",
+        "ecr:PutImage",
+        "ecr:InitiateLayerUpload",
+        "ecr:UploadLayerPart",
+        "ecr:CompleteLayerUpload",
+        "ecr:DescribeRepositories",
+        "ecr:ListImages",
+        "ecr:DescribeImages"
+      ]
+    },
+    {
+      "Sid": "DenyAllOthers",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "ecr:*",
+      "Condition": {
+        "StringNotEquals": {
+          "aws:PrincipalArn": "arn:aws:iam::350967406945:user/ecr-dev-user"
+        }
+      }
+    }
+  ]
+}
